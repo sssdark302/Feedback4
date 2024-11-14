@@ -13,14 +13,13 @@
         tools:targetApi="35">
 
         <!-- Define la actividad principal -->
-        <activity android:name=".PaginaPrincipal"
+        <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <!-- Define el receiver para el widget -->
         <receiver android:name=".NovelaWidgetProvider"
             android:exported="true">
