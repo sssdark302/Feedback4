@@ -12,7 +12,6 @@ class NovelaDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABAS
         const val DATABASE_NAME = "biblioteca.db"
         const val DATABASE_VERSION = 1
 
-        // Nombre de la tabla y columnas
         const val TABLE_NOVELAS = "novelas"
         const val COLUMN_ID = "id"
         const val COLUMN_TITULO = "titulo"
@@ -21,7 +20,6 @@ class NovelaDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABAS
         const val COLUMN_PAGINAS = "paginas"
         const val COLUMN_DESCRIPCION = "descripcion"
 
-        // Creación de la tabla
         private const val SQL_CREATE_ENTRIES = """
             CREATE TABLE $TABLE_NOVELAS (
                 $COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -33,7 +31,6 @@ class NovelaDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABAS
             )
         """
 
-        // Eliminación de la tabla
         private const val SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS $TABLE_NOVELAS"
     }
 
@@ -46,7 +43,7 @@ class NovelaDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABAS
         onCreate(db)
     }
 
-    // Función para agregar una novela a la base de datos
+    // Agregar una novela
     fun addNovela(novela: Novela): Long {
         val db = writableDatabase
         val values = ContentValues().apply {
@@ -59,6 +56,7 @@ class NovelaDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABAS
         return db.insert(TABLE_NOVELAS, null, values)
     }
 
+    // Obtener todas las novelas
     fun getAllNovelas(): List<Novela> {
         val novelas = mutableListOf<Novela>()
         val db = this.readableDatabase
@@ -81,8 +79,7 @@ class NovelaDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABAS
         return novelas
     }
 
-
-    // Función para actualizar una novela
+    // Actualizar una novela
     fun updateNovela(novela: Novela): Int {
         val db = writableDatabase
         val values = ContentValues().apply {
@@ -95,7 +92,7 @@ class NovelaDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABAS
         return db.update(TABLE_NOVELAS, values, "$COLUMN_ID = ?", arrayOf(novela.id.toString()))
     }
 
-    // Función para eliminar una novela
+    // Eliminar una novela
     fun deleteNovela(id: Int): Int {
         val db = writableDatabase
         return db.delete(TABLE_NOVELAS, "$COLUMN_ID = ?", arrayOf(id.toString()))

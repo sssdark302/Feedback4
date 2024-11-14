@@ -1,23 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widgetLayout"
-    android:orientation="vertical"
+    android:id="@+id/widgetContainer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:gravity="center">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@color/white">
 
     <TextView
-        android:id="@+id/novelaTitle"
+        android:id="@+id/widgetTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Título de la Novela"
-        android:textStyle="bold"
-        android:textSize="16sp" />
+        android:text="Novelas en tu biblioteca"
+        android:textSize="16sp"
+        android:textColor="@color/black" />
 
     <TextView
-        android:id="@+id/novelaAutor"
+        android:id="@+id/widgetNovelaTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Autor de la Novela"
-        android:textSize="14sp" />
+        android:text="Título de la novela"
+        android:textSize="14sp"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/actualizarWidgetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actualizar Widget" />
 </LinearLayout>

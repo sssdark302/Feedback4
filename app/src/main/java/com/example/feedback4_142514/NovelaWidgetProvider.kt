@@ -1,36 +1,30 @@
+package com.example.feedback4_142514
+
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
-import com.example.feedback4_142514.NovelaDatabaseHelper
-import com.example.feedback4_142514.PaginaPrincipal
-import com.example.feedback4_142514.R
 
 class NovelaWidgetProvider : AppWidgetProvider() {
-    override fun onUpdate(context: Context?, appWidgetManager: AppWidgetManager?, appWidgetIds: IntArray?) {
-        if (context == null || appWidgetIds == null || appWidgetManager == null) return
-
-        val dbHelper = NovelaDatabaseHelper(context)
-        val novelas = dbHelper.getAllNovelas()
+    override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         for (appWidgetId in appWidgetIds) {
-            val views = RemoteViews(context.packageName, R.layout.novela_widget)
-
-            // Mostrar el título de la primera novela (como ejemplo)
-            if (novelas.isNotEmpty()) {
-                views.setTextViewText(R.id.novelaTitle, novelas[0].titulo)
-                views.setTextViewText(R.id.novelaAutor, novelas[0].autor)
-            } else {
-                views.setTextViewText(R.id.novelaTitle, "No hay novelas")
-                views.setTextViewText(R.id.novelaAutor, "")
-            }
-
-            // Crear Intent para abrir la aplicación al tocar el widget
+            // Crear intent para abrir la app cuando se hace clic en el widget
             val intent = Intent(context, PaginaPrincipal::class.java)
-            val pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-            views.setOnClickPendingIntent(R.id.widgetLayout, pendingIntent)
+            val pendingIntent = PendingIntent.getActivity(
+                context, 0, intent, PendingIntent.FLAG_IMMUTABLE
+            )
 
+            // Configurar RemoteViews para el layout del widget
+            val views = RemoteViews(context.packageName, R.layout.novela_widget)
+            views.setOnClickPendingIntent(R.id.widgetContainer, pendingIntent)
+
+            // Configuración inicial del widget (por ejemplo, puedes cargar un título de ejemplo)
+            views.setTextViewText(R.id.widgetTitle, "Bienvenido a tu Biblioteca")
+            views.setTextViewText(R.id.widgetNovelaTitle, "Ejemplo de novela")
+
+            // Actualizar el widget
             appWidgetManager.updateAppWidget(appWidgetId, views)
         }
     }
