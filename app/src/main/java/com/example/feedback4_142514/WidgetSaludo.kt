@@ -25,8 +25,9 @@ class WidgetSaludo : AppWidgetProvider() {
             }
             views.setTextViewText(R.id.greetingTextView, greeting)
 
-            val intent = Intent(context, PaginaPrincipal::class.kotlin)
-            val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
+            val intent = Intent(context, PaginaPrincipal::class.java)
+            val pendingIntent = PendingIntent.getActivity(context, 0, intent,
+                PendingIntent.FLAG_IMMUTABLE)
             views.setOnClickPendingIntent(R.id.buttonStart, pendingIntent)
 
             appWidgetManager!!.updateAppWidget(AppWidgetId, views)
