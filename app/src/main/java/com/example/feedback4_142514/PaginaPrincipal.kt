@@ -3,6 +3,7 @@ package com.example.feedback4_142514
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
+
 class PaginaPrincipal : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
