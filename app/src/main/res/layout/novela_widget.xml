@@ -1,21 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetLayout"
     android:orientation="vertical"
-    android:padding="16dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
     android:gravity="center">
 
     <TextView
-        android:id="@+id/greetingTextView"
+        android:id="@+id/novelaTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saludo"
-        android:textSize="18sp" />
+        android:text="Título de la Novela"
+        android:textStyle="bold"
+        android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/buttonStart"
+    <TextView
+        android:id="@+id/novelaAutor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Abrir App" />
+        android:text="Autor de la Novela"
+        android:textSize="14sp" />
 </LinearLayout>

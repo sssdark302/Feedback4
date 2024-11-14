@@ -59,30 +59,28 @@ class NovelaDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABAS
         return db.insert(TABLE_NOVELAS, null, values)
     }
 
-    // Función para obtener todas las novelas
     fun getAllNovelas(): List<Novela> {
-        val db = readableDatabase
         val novelas = mutableListOf<Novela>()
-        val cursor: Cursor = db.query(
-            TABLE_NOVELAS,
-            null, null, null, null, null, null
-        )
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_NOVELAS", null)
 
-        with(cursor) {
-            while (moveToNext()) {
-                val id = getInt(getColumnIndexOrThrow(COLUMN_ID))
-                val titulo = getString(getColumnIndexOrThrow(COLUMN_TITULO))
-                val autor = getString(getColumnIndexOrThrow(COLUMN_AUTOR))
-                val genero = getString(getColumnIndexOrThrow(COLUMN_GENERO))
-                val paginas = getInt(getColumnIndexOrThrow(COLUMN_PAGINAS))
-                val descripcion = getString(getColumnIndexOrThrow(COLUMN_DESCRIPCION))
-
+        if (cursor.moveToFirst()) {
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ID))
+                val titulo = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITULO))
+                val autor = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_AUTOR))
+                val genero = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_GENERO))
+                val paginas = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_PAGINAS))
+                val descripcion = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESCRIPCION))
                 novelas.add(Novela(id, titulo, autor, genero, paginas, descripcion))
-            }
+            } while (cursor.moveToNext())
         }
+
         cursor.close()
+        db.close()
         return novelas
     }
+
 
     // Función para actualizar una novela
     fun updateNovela(novela: Novela): Int {

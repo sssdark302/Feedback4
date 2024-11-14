@@ -17,16 +17,18 @@ class FragmentListaNovelas : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_lista_novela, container, false)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.novelaRecyclerView)
 
+        // Inicializa el helper de base de datos
         dbHelper = NovelaDatabaseHelper(requireContext())
-        val novelas = dbHelper.getAllNovelas()
-        novelaAdapter = NovelaAdapter(novelas) { novela ->
-            (activity as? PaginaPrincipal)?.showDetailsFragment(novela)
-        }
 
+        // Obtén la lista de novelas desde la base de datos
+        val novelas = dbHelper.getAllNovelas()
+
+        // Configuración del RecyclerView
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewNovelas)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        novelaAdapter = NovelaAdapter(novelas)
         recyclerView.adapter = novelaAdapter
-        recyclerView.layoutManager = LinearLayoutManager(context)
 
         return view
     }
