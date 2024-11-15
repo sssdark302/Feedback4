@@ -7,7 +7,6 @@
     - **Añadir Novelas**: Los usuarios pueden agregar nuevas novelas proporcionando información como título, autor, género, número de páginas y descripción.
     - **Eliminar Novelas**: Las novelas se pueden eliminar desde la lista principal o a través de un menú contextual en cada ítem.
     - **Marcar como Favorita**: Permite marcar una novela como favorita para mostrarla en el widget y hacer un seguimiento de las preferencias del usuario.
-    - **Editar Novelas**: Los usuarios pueden editar la información de una novela existente, incluyendo el título, autor, género, número de páginas y descripción.
       
 2. **Visualización de la Lista de Novelas**
     - La lista de novelas está disponible en la actividad principal `ListaNovelasActivity` y permite ver todas las novelas añadidas.
