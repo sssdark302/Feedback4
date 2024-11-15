@@ -1,6 +1,5 @@
 <!-- res/values/themes.xml -->
 <resources>
-    <!-- Define el tema de la aplicación extendiendo de AppCompat -->
     <style name="Theme.Feedback4_142514" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>

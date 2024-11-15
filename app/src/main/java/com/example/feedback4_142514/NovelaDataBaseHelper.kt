@@ -18,7 +18,7 @@ class NovelaDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABAS
 
     companion object {
         const val DATABASE_NAME = "biblioteca.db"
-        const val DATABASE_VERSION = 2 // Incrementa la versión si necesitas actualizar la base de datos
+        const val DATABASE_VERSION = 2
 
         const val TABLE_NOVELAS = "novelas"
         const val COLUMN_ID = "id"
@@ -27,7 +27,7 @@ class NovelaDatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABAS
         const val COLUMN_GENERO = "genero"
         const val COLUMN_PAGINAS = "paginas"
         const val COLUMN_DESCRIPCION = "descripcion"
-        const val COLUMN_ES_FAVORITA = "esFavorita" // Nueva columna para estado de favorito
+        const val COLUMN_ES_FAVORITA = "esFavorita"
 
         private const val SQL_CREATE_ENTRIES = """
             CREATE TABLE $TABLE_NOVELAS (

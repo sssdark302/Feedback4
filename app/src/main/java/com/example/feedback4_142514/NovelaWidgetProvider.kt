@@ -32,7 +32,6 @@ class NovelaWidgetProvider : AppWidgetProvider() {
         views.setTextViewText(R.id.tituloTextView, novela?.titulo ?: "Sin favorita")
         views.setTextViewText(R.id.autorTextView, "Autor: ${novela?.autor ?: "Desconocido"}")
 
-        // Intent para abrir DetallesNovelaActivity con el id de la novela favorita
         val detallesIntent = Intent(context, DetallesNovelaActivity::class.java).apply {
             putExtra("novelaId", novela?.getId())
         }

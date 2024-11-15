@@ -18,7 +18,6 @@ class DetallesNovelaActivity : AppCompatActivity(), FragmentDetallesNovelas.OnDe
         novelaManager = NovelaManager(this)
         novelaId = intent.getIntExtra("novelaId", -1)
 
-        // Cargar el FragmentDetallesNovelas con la novela específica
         if (savedInstanceState == null) {
             val novela = getNovelaById(novelaId)
             val detallesFragment = FragmentDetallesNovelas().apply {
@@ -40,6 +39,6 @@ class DetallesNovelaActivity : AppCompatActivity(), FragmentDetallesNovelas.OnDe
     }
 
     override fun onVolverALaLista() {
-        finish() // Finaliza esta actividad y vuelve a la actividad de la lista
+        finish()
     }
 }

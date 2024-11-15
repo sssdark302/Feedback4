@@ -16,13 +16,11 @@ class MainActivity : AppCompatActivity(), FragmentListaNovelas.OnNovelaClickList
 
         novelaManager = NovelaManager(this)
 
-        // Cargar el FragmentListaNovelas como pantalla inicial
         if (savedInstanceState == null) {
             replaceFragment(FragmentListaNovelas())
         }
     }
 
-    // Implementación de la interfaz OnNovelaClickListener de FragmentListaNovelas
     override fun onNovelaClick(novela: Novela) {
         val detallesFragment = FragmentDetallesNovelas().apply {
             configurar(novela)
@@ -30,7 +28,6 @@ class MainActivity : AppCompatActivity(), FragmentListaNovelas.OnNovelaClickList
         replaceFragment(detallesFragment)
     }
 
-    // Implementación de la interfaz OnDetalleNovelaListener de FragmentDetallesNovelas
     override fun onMarcarFavorita(novela: Novela) {
         novelaManager.marcarComoFavorita(novela.getId()!!, novela.esFavorita)
     }
@@ -39,7 +36,6 @@ class MainActivity : AppCompatActivity(), FragmentListaNovelas.OnNovelaClickList
         replaceFragment(FragmentListaNovelas())
     }
 
-    // Método para reemplazar el fragment actual
     private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)

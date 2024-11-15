@@ -22,13 +22,12 @@ class NovelaAdapter(
     inner class NovelaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val titleTextView = itemView.findViewById<TextView>(R.id.titleTextView)
         val authorTextView = itemView.findViewById<TextView>(R.id.authorTextView)
-        val optionsButton = itemView.findViewById<ImageView>(R.id.optionsButton) // Botón para mostrar el menú
+        val optionsButton = itemView.findViewById<ImageView>(R.id.optionsButton)
 
         fun bind(novela: Novela) {
             titleTextView.text = novela.titulo
             authorTextView.text = novela.autor
 
-            // Abre DetallesNovelaActivity al hacer clic en el ítem
             itemView.setOnClickListener {
                 val intent = Intent(context, DetallesNovelaActivity::class.java).apply {
                     putExtra("novelaId", novela.getId())
@@ -36,7 +35,6 @@ class NovelaAdapter(
                 context.startActivity(intent)
             }
 
-            // Configura el menú contextual
             optionsButton.setOnClickListener {
                 showPopupMenu(it, novela)
             }
@@ -54,7 +52,7 @@ class NovelaAdapter(
 
     override fun getItemCount(): Int = novelas.size
 
-    // Muestra el menú contextual para el ítem seleccionado
+
     private fun showPopupMenu(view: View, novela: Novela) {
         val popupMenu = PopupMenu(context, view)
         popupMenu.inflate(R.menu.novela_item_menu)
@@ -64,7 +62,7 @@ class NovelaAdapter(
                 R.id.action_delete -> {
                     // Lógica de eliminación de la novela
                     novelaManager.deleteNovela(novela.titulo)
-                    updateNovelas(novelaManager.getAllNovelas()) // Actualizar la lista
+                    updateNovelas(novelaManager.getAllNovelas())
                     true
                 }
                 else -> false
@@ -74,7 +72,6 @@ class NovelaAdapter(
         popupMenu.show()
     }
 
-    // Método para actualizar la lista de novelas en el adaptador
     fun updateNovelas(nuevasNovelas: List<Novela>) {
         novelas = nuevasNovelas
         notifyDataSetChanged()

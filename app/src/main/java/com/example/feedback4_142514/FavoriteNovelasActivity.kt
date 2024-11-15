@@ -19,7 +19,6 @@ class FavoriteNovelasActivity : AppCompatActivity() {
 
         novelaManager = NovelaManager(this)
 
-        // Configura RecyclerView para mostrar solo las novelas favoritas
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewFavorites)
         recyclerView.layoutManager = LinearLayoutManager(this)
         val favoriteNovelas = novelaManager.getAllNovelas().filter { it.esFavorita }

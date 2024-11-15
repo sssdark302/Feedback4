@@ -13,14 +13,12 @@ class ListaNovelasActivity : AppCompatActivity(), FragmentListaNovelas.OnNovelaC
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_novelas)
 
-        // Configura el botón para abrir NovelaManagerActivity
         val buttonToManagerActivity = findViewById<Button>(R.id.buttonToManagerActivity)
         buttonToManagerActivity.setOnClickListener {
             val intent = Intent(this, NovelaManagerActivity::class.java)
             startActivity(intent)
         }
 
-        // Cargar FragmentListaNovelas como pantalla inicial
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainer, FragmentListaNovelas())
@@ -28,7 +26,6 @@ class ListaNovelasActivity : AppCompatActivity(), FragmentListaNovelas.OnNovelaC
         }
     }
 
-    // Implementación de OnNovelaClickListener para manejar la selección de una novela
     override fun onNovelaClick(novela: Novela) {
         val detallesFragment = FragmentDetallesNovelas().apply {
             configurar(novela)

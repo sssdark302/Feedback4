@@ -22,20 +22,17 @@ class NovelaManagerActivity : AppCompatActivity() {
 
         novelaManager = NovelaManager(this)
 
-        // Configura RecyclerView
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewNovelas)
         recyclerView.layoutManager = LinearLayoutManager(this)
         novelaAdapter = NovelaAdapter(novelaManager.getAllNovelas(), this, novelaManager)
         recyclerView.adapter = novelaAdapter
 
-        // Referencia a los campos de texto para la entrada de datos
         val editTextNovelaTitle = findViewById<EditText>(R.id.editTextNovelaTitle)
         val editTextNovelaAutor = findViewById<EditText>(R.id.editTextNovelaAutor)
         val editTextNovelaGenero = findViewById<EditText>(R.id.editTextNovelaGenero)
         val editTextNovelaPaginas = findViewById<EditText>(R.id.editTextNovelaPaginas)
         val editTextNovelaDescripcion = findViewById<EditText>(R.id.editTextNovelaDescripcion)
 
-        // Botón para añadir novelas
         val buttonAddNovela = findViewById<Button>(R.id.buttonAddNovela)
         buttonAddNovela.setOnClickListener {
             val title = editTextNovelaTitle.text.toString()
@@ -45,7 +42,6 @@ class NovelaManagerActivity : AppCompatActivity() {
             val descripcion = editTextNovelaDescripcion.text.toString()
 
             if (title.isNotEmpty() && autor.isNotEmpty()) {
-                // Crear y añadir la nueva novela
                 val nuevaNovela = Novela(
                     titulo = title,
                     autor = autor,
@@ -56,7 +52,6 @@ class NovelaManagerActivity : AppCompatActivity() {
                 novelaManager.addNovela(nuevaNovela)
                 novelaAdapter.updateNovelas(novelaManager.getAllNovelas())
 
-                // Limpiar los campos de entrada
                 editTextNovelaTitle.text.clear()
                 editTextNovelaAutor.text.clear()
                 editTextNovelaGenero.text.clear()
@@ -65,7 +60,6 @@ class NovelaManagerActivity : AppCompatActivity() {
             }
         }
 
-        // Botón para ver la lista de favoritos
         val buttonViewFavorites = findViewById<Button>(R.id.buttonViewFavorites)
         buttonViewFavorites.setOnClickListener {
             val intent = Intent(this, FavoriteNovelasActivity::class.java)

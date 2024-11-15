@@ -20,13 +20,11 @@ class FragmentDetallesNovelas : Fragment() {
     private lateinit var novela: Novela
     private var listener: OnDetalleNovelaListener? = null
 
-    // Interfaz para notificar a MainActivity de acciones realizadas en FragmentDetallesNovelas
     interface OnDetalleNovelaListener {
         fun onMarcarFavorita(novela: Novela)
         fun onVolverALaLista()
     }
 
-    // Configuración para inicializar el fragmento con una novela específica
     fun configurar(novela: Novela) {
         this.novela = novela
     }
@@ -49,10 +47,10 @@ class FragmentDetallesNovelas : Fragment() {
                 DetallesNovelaContent(
                     novela = novela,
                     onMarcarFavorita = {
-                        novela.esFavorita = !novela.esFavorita  // Alternar favorito
-                        listener?.onMarcarFavorita(novela)  // Notificar a la actividad
+                        novela.esFavorita = !novela.esFavorita
+                        listener?.onMarcarFavorita(novela)
                     },
-                    onVolver = { listener?.onVolverALaLista() }  // Notificar para volver a la lista
+                    onVolver = { listener?.onVolverALaLista() }
                 )
             }
         }
