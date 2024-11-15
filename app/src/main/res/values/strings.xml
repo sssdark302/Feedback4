@@ -1,3 +1,11 @@
+<!-- res/values/strings.xml -->
 <resources>
-    <string name="app_name">feedback4_142514</string>
+    <string name="app_name">Feedback4_142514</string>
+    <string name="widget_title">Título de la Novela Favorita</string>
+    <string name="widget_author">Autor</string>
+    <string name="button_ver_detalles">Ver Detalles</string>
+    <string name="button_ver_lista">Ver Lista de Novelas</string>
+    <string name="button_marcar_favorita">Marcar como Favorita</string>
+    <string name="button_quitar_favorita">Quitar de Favoritas</string>
+    <string name="label_no_favorita">Sin favorita</string>
 </resources>

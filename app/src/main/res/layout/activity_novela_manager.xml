@@ -1,0 +1,57 @@
+<!-- res/layout/activity_novela_manager.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextNovelaTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Título de la Novela" />
+
+    <EditText
+        android:id="@+id/editTextNovelaAutor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Autor de la Novela" />
+
+    <EditText
+        android:id="@+id/editTextNovelaGenero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Género de la Novela" />
+
+    <EditText
+        android:id="@+id/editTextNovelaPaginas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:hint="Número de Páginas" />
+
+    <EditText
+        android:id="@+id/editTextNovelaDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripción de la Novela" />
+
+    <Button
+        android:id="@+id/buttonAddNovela"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Añadir Novela" />
+
+    <Button
+        android:id="@+id/buttonViewFavorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ver Favoritos" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewNovelas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

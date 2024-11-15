@@ -1,3 +1,4 @@
+// DetallesNovelaActivity.kt
 package com.example.feedback4_142514
 
 import android.os.Bundle
@@ -17,7 +18,7 @@ class DetallesNovelaActivity : AppCompatActivity(), FragmentDetallesNovelas.OnDe
         novelaManager = NovelaManager(this)
         novelaId = intent.getIntExtra("novelaId", -1)
 
-        // Carga FragmentDetallesNovelas con la novela específica
+        // Cargar el FragmentDetallesNovelas con la novela específica
         if (savedInstanceState == null) {
             val novela = getNovelaById(novelaId)
             val detallesFragment = FragmentDetallesNovelas().apply {

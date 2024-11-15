@@ -1,6 +1,9 @@
+// ListaNovelasActivity.kt
 package com.example.feedback4_142514
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.feedback4_142514.modelos.Novela
 
@@ -9,6 +12,13 @@ class ListaNovelasActivity : AppCompatActivity(), FragmentListaNovelas.OnNovelaC
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_novelas)
+
+        // Configura el botón para abrir NovelaManagerActivity
+        val buttonToManagerActivity = findViewById<Button>(R.id.buttonToManagerActivity)
+        buttonToManagerActivity.setOnClickListener {
+            val intent = Intent(this, NovelaManagerActivity::class.java)
+            startActivity(intent)
+        }
 
         // Cargar FragmentListaNovelas como pantalla inicial
         if (savedInstanceState == null) {

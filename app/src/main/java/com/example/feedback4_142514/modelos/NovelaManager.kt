@@ -16,7 +16,6 @@ class NovelaManager(context: Context) {
             put(NovelaDatabaseHelper.COLUMN_GENERO, novela.genero)
             put(NovelaDatabaseHelper.COLUMN_PAGINAS, novela.paginas)
             put(NovelaDatabaseHelper.COLUMN_DESCRIPCION, novela.descripcion)
-            put(NovelaDatabaseHelper.COLUMN_ES_FAVORITA, if (novela.esFavorita) 1 else 0)
         }
         return db.insert(NovelaDatabaseHelper.TABLE_NOVELAS, null, values)
     }
@@ -53,6 +52,33 @@ class NovelaManager(context: Context) {
         }
         return db.update(NovelaDatabaseHelper.TABLE_NOVELAS, values, "${NovelaDatabaseHelper.COLUMN_ID} = ?", arrayOf(novela.getId().toString()))
     }
+    fun getLastFavoriteNovela(): Novela? {
+        val db = dbHelper.readableDatabase
+        val cursor: Cursor = db.query(
+            NovelaDatabaseHelper.TABLE_NOVELAS,
+            null,
+            "${NovelaDatabaseHelper.COLUMN_ES_FAVORITA} = ?",
+            arrayOf("1"),
+            null,
+            null,
+            "${NovelaDatabaseHelper.COLUMN_ID} DESC",
+            "1"
+        )
+
+        return if (cursor.moveToFirst()) {
+            val id = cursor.getInt(cursor.getColumnIndexOrThrow(NovelaDatabaseHelper.COLUMN_ID))
+            val titulo = cursor.getString(cursor.getColumnIndexOrThrow(NovelaDatabaseHelper.COLUMN_TITULO))
+            val autor = cursor.getString(cursor.getColumnIndexOrThrow(NovelaDatabaseHelper.COLUMN_AUTOR))
+            val genero = cursor.getString(cursor.getColumnIndexOrThrow(NovelaDatabaseHelper.COLUMN_GENERO))
+            val paginas = cursor.getInt(cursor.getColumnIndexOrThrow(NovelaDatabaseHelper.COLUMN_PAGINAS))
+            val descripcion = cursor.getString(cursor.getColumnIndexOrThrow(NovelaDatabaseHelper.COLUMN_DESCRIPCION))
+            Novela(id, titulo, autor, genero, paginas, descripcion, esFavorita = true)
+        } else {
+            null
+        }.also {
+            cursor.close()
+        }
+    }
 
     fun marcarComoFavorita(id: Int, esFavorita: Boolean): Int {
         val db = dbHelper.writableDatabase
@@ -61,4 +87,16 @@ class NovelaManager(context: Context) {
         }
         return db.update(NovelaDatabaseHelper.TABLE_NOVELAS, values, "${NovelaDatabaseHelper.COLUMN_ID} = ?", arrayOf(id.toString()))
     }
+
+    fun deleteNovela(titulo: String): Int {
+        val db = dbHelper.writableDatabase
+        return db.delete(NovelaDatabaseHelper.TABLE_NOVELAS, "${NovelaDatabaseHelper.COLUMN_TITULO} = ?", arrayOf(titulo))
+    }
+
+    private fun getFavoriteNovela(context: Context): Novela? {
+        val novelaManager = NovelaManager(context)
+        return novelaManager.getLastFavoriteNovela()
+    }
+
+
 }
